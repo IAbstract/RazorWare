@@ -1,0 +1,34 @@
+{% extends "razor_app/_layout.html" %}
+{% load staticfiles %}
+
+{% block title %}Razorware Accout Admin {% endblock %}
+{% block scripts %}
+<script type="text/javascript" src="{% static 'scripts/acct-admin.js' %}"></script>
+<script>
+var data = {{ data|safe }};
+
+$(document).ready(function(){
+
+    fetch_account_data(data.acct_id);
+})
+
+</script>
+{% endblock %}
+
+{% block content %}
+<table class="content">
+        <thead align="center">
+            <tr>
+                <th colspan="3" style="text-align: center"><label>Account Admin</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><label id="action_status"></label></td>
+            </tr>
+            <tr>
+                <td><label id="acct_id"></label></td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

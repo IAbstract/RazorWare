@@ -1,0 +1,3 @@
+[script] menutable.js loaded
+Uncaught TypeError: owner.getBoundingClientRect is not a function
+[script::Menu] hide recipes dropdown

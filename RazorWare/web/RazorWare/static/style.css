@@ -1,0 +1,82 @@
+body {
+    background-color: #e3e3e3;
+}
+
+.center {
+    text-align: center;
+}
+
+/* primary window provides absolute position anchoring */
+.menu_container {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 25px;
+    position: relative;
+}
+.menu_highlight {
+    background-color: #bbccdd;
+}
+#popup_window {
+    float: left;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+/* popup menus */
+.popup {
+    position: relative;
+    width: 75px;
+    border: solid 1px whitesmoke;
+    background-color: white;
+}
+/* popup menu items */
+div.popup_option {
+    font-family: sans-serif;
+    color: #cc1111;
+    font-size: 14px;
+    font-weight: bold;
+}
+div.popup_highlight {
+    background-color: darkgreen;
+    color: white;
+    font-style: oblique;
+}
+
+table.head {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table.page_content {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table.content {
+    border: 1px groove darkblue;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table.inner_content {
+    border: 1px ridge #d3d3d3;
+    width: 100%;
+    vertical-align: top;
+}
+
+div.designer {
+    width: 800px;
+    height: 650px;
+    border: 1px groove crimson;
+}
+
+.small_info {
+    color: #003366;
+    font-family: candara;
+    font-size: 12px;
+    font-style: oblique;
+}

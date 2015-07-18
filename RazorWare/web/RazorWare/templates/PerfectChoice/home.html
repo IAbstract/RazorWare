@@ -1,0 +1,50 @@
+{% extends "generic/_layout.html" %}
+{% load staticfiles %}
+
+{% block title %}{{ cust_title }}{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+    $(document).ready(function (){
+        $menu.setEvent("home", "click", home);
+        $menu.setEvent("contact", "click", contact);
+
+        $menu.addPopupMenu("recipes", optionObj['sub_opts']['recipes']);
+        $menu.setEvent("recipes", "click", getRecipes);
+        $menu.setEvent("Poultry", "click", getRecipes, {recipes: "Poultry"});
+        $menu.setEvent("Beef", "click", getRecipes, {recipes: "Beef"});
+        $menu.setEvent("Submit", "click", submitRecipe, {recipes: "Submit"});
+
+    });
+
+    function home(e) {
+        console.log("[script::Menu] home");
+    }
+    function contact(e) {
+        console.log("[script::Menu] contact");
+    }
+    function getRecipes(e) {
+        if (e.data != undefined && e.hasOwnProperty("data") && e.data.hasOwnProperty("recipes")) {
+            console.log("[script::Menu] get recipes: " + e.data.recipes);
+        } else {
+            console.log("[script::Menu] get all recipes");
+        }
+    }
+    function submitRecipe(e) {
+        console.log("[script::Menu] submit recipe");
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+<table class="content">
+    <thead align="center">
+        <tr>
+            <th colspan="3" style="text-align: center">{{ cust_message }}</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+{% endblock %}

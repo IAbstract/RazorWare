@@ -1,0 +1,36 @@
+{% extends "generic/_layout.html" %}
+{% load staticfiles %}
+
+{% block title %}{{ cust_title }}{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+    $(document).ready(function (){
+        $menu.setEvent("home", "click", home);
+        $menu.setEvent("contact", "click", contact);
+
+        $menu.addPopupMenu("styles", optionObj['sub_opts']['styles']);
+
+    });
+
+    function home(eData) {
+        console.log("[script::Menu] home");
+    }
+    function contact(eData) {
+        console.log("[script::Menu] contact");
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+<table class="content">
+        <thead align="center">
+            <tr>
+                <th colspan="3" style="text-align: center">{{ cust_message }}</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RzMobileWare</string>
+    <string name="copyright">© 2015, RazorWare, LLC. All Rights Reserved.</string>
+    <string name="terms_of_use">By logging into the application you are agreeing to accept the terms of use.</string>
+</resources>

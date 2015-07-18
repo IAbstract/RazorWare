@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lang="en">
+    <head>
+        {% block favicon %}{% endblock %}
+        {% block linkcss %}<link rel="stylesheet" type="text/css" href="{% static cust_stylesheet %}" />{% endblock %}
+        <title>{% block title %}{% endblock %}</title>
+        <script type="text/javascript" src="{% static 'scripts/jquery-2.1.3.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'scripts/menutable.js' %}"></script>
+        <script type="text/javascript">
+            var optionObj = {{ menu | safe }};
+            var $menuContainer = null;
+            var $menu = null;
+
+            $(document).ready(function() {
+                $menuContainer = $("div#menu_container");
+                (function($) {
+                    var origAppend = $.fn.append;
+
+                    $.fn.append = function () {
+                        return origAppend.apply(this, arguments).trigger("append");
+                    };
+                })(jQuery);
+
+                $menu = new Menu(optionObj, $("div#popup_window"));
+                $menu.setEvent("login", "click", login);
+
+                $menuContainer.on("append", $menu.onAppear);
+                $menuContainer.append($menu.control);
+            });
+
+            function documentLoadComplete() {
+                console.log("[_layout::LoadComplete]");
+                //$menu.onLoadComplete();
+            }
+            function login(e) {
+                console.log("[script::Menu] login user");
+            }
+        </script>
+        {% block scripts %}{% endblock %}
+    </head>
+    <body>
+        {% block head %}
+            <table class="head">
+                <tr>
+                    <td class="center">
+                        <img src="{% static cust_header %}">
+                    </td>
+                </tr>
+            </table>
+        {% endblock %}
+
+        {% block menu %}
+            <div class="menu_container" id="menu_container">
+                <div class="menu_window" id="popup_window"></div>
+            </div>
+        {% endblock %}
+        <table class="page_content">
+            <tr>
+                <td>
+                    <div id="content">
+                        {% block content %}{% endblock %}
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
