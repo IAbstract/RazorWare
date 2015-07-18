@@ -1,0 +1,27 @@
+{% load staticfiles %}
+{% block favicon %}<link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}"/>{% endblock %}
+
+{% block linkcss %}<link rel="stylesheet" type="text/css" href="{% static 'designer.css' %}" />{% endblock %}
+<title>{% block title %}{% endblock %}</title>
+<script type="text/javascript" src="{% static 'scripts/jquery-2.1.3.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'scripts/jquery.layout.min-1.2.0.js' %}"></script>
+<script type="text/javascript" src="{% static 'scripts/designertoolbox.js' %}"></script>
+<script type="text/javascript" src="{% static 'scripts/designercanvas.js' %}"></script>
+
+{% block scripts %}{% endblock %}
+
+<table class="designer">
+    <tr>
+        <td class="infoPane" colspan="2">
+            {% block info %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td class="toolboxPane">
+            {% block page_toolbox %}{% endblock %}
+        </td>
+        <td class="canvasPane">
+            {% block page_designer %}{% endblock %}
+        </td>
+    </tr>
+</table>

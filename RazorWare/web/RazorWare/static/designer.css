@@ -1,0 +1,37 @@
+.infoPane {
+    border: dodgerblue 1px solid;
+    text-align: center;
+    font-family: candara;
+    font-size: 16px;
+    color: #003366;
+}
+
+.toolboxPane {
+    width: 20%;
+    height: 100%;
+    border: dodgerblue 1px solid;
+}
+
+.canvasPane {
+    width: auto;
+    height: 100%;
+    border: dodgerblue 1px solid;
+}
+
+.designer {
+    width: 100%;
+    height: 100%;
+    background-color: #EDF3FE;
+}
+
+.toolbox {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.canvas {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
