@@ -1,0 +1,31 @@
+{% extends "razorware/_contentdesigner.html" %}
+{% load staticfiles %}
+
+{% block title %}{{ designer_title }}{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        var $canvas = null;
+        var $toolbox = null;
+
+        $(document).ready(function () {
+            $canvas = new DesignerCanvas();
+            $("#page_canvas").append($canvas.control);
+
+            $toolbox = new DesignerToolbox({{ tool_content | safe }});
+            $("#page_toolbox").append($toolbox.control);
+        });
+
+    </script>
+{% endblock %}
+
+{% block info %}WebSphere FormsDesigner{% endblock %}
+
+
+{% block page_toolbox %}
+    <div id="page_toolbox" class="toolbox"/>
+{% endblock %}
+
+{% block page_designer %}
+    <div id="page_canvas" class="canvas"/>
+{% endblock %}

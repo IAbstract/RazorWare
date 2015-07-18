@@ -21,8 +21,8 @@ CUSTOMER_CONFIGS = {
                 'contact': "images/btn_contact.png",
                 'websphere': "images/btn_websphere.png",
                 'tips': {
-                    'login': "Click to login to RzWare CRM",
-                    'websphere': "Click to give WebSphere a test drive"
+                    'login': "Click to login to RzWare CRM.",
+                    'websphere': "Click to learn more about WebSphere."
                 }
             }),
         },

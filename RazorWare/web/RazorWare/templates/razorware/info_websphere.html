@@ -1,0 +1,27 @@
+{% extends "razorware/home.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <script type="text/javascript">
+        var $getDesigner = null;
+
+        $(document).ready(function () {
+            $getDesigner = $("#getFormDesigner");
+
+            setEventState();
+        });
+
+        function setEventState() {
+            $getDesigner.on("click", function () {
+                console.log("navigate to forms designer");
+                window.location = "getTestFormsDesigner";
+            });
+        }
+    </script>
+
+    <table>
+        <tr>
+            <td><label id="getFormDesigner">Give RzForms a test.</label></td>
+        </tr>
+    </table>
+{% endblock %}
