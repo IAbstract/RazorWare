@@ -2,7 +2,7 @@
  * Created by David on 7/18/2015.
  */
 
-function DesignerToolbox (toolsContent) {
+function DesignerToolbox (toolsContent, targetCanvas) {
     var toolBoxItems = [];
     var updateDisplay = null;
 
@@ -18,24 +18,26 @@ function DesignerToolbox (toolsContent) {
         $.each(toolsContent, function (item) {
             console.log("\t<" + item + "/> \"" + toolsContent[item]['tooltip']);
             var $row = $("<tr><td/></tr>");
+            var $tbItemContainer = $("<div class='toolBoxItem'/>");
             var $tbItem = $(toolsContent[item]['html']);
-            $tbItem.prop("title", toolsContent[item]['tooltip']);
-            $tbItem.toggleClass("toolBoxItem");
-            
-            toolBoxItems.push($tbItem);
+            $tbItem.css({
+                "width": "100%",
+                "height": "100%"
+            });
 
-            $row.find("td").append($tbItem);
+            $tbItemContainer.append($tbItem);
+            $tbItemContainer.attr("type", item);
+            $tbItemContainer.prop("title", toolsContent[item]['tooltip']);
+            
+            toolBoxItems.push($tbItemContainer);
+
+            $row.find("td").append($tbItemContainer);
             $toolBox.append($row);
 
-            $tbItem.draggable({
+            $tbItemContainer.draggable({
                 helper: "clone",
                 opacity: 0.5,
-                drag: function (event, ui) {
-                    //console.log("dragging " + ui.helper.attr("type"));
-                    if (updateDisplay != null) {
-                        updateDisplay($(ui.helper));
-                    }
-                }
+                containment: targetCanvas.prop("id")
             });
         });
 

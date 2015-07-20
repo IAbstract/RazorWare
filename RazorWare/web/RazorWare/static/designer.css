@@ -37,6 +37,15 @@
     color: #333333;
 }
 
+.toolBoxItem {
+    position: relative;
+    border: #EDF3FE 1px outset;
+    width: 65px;
+    height: 15px;
+    font-family: Arial;
+    font-size: 10px;
+}
+
 .designer {
     width: 100%;
     height: 100%;
@@ -56,7 +65,11 @@
 }
 
 #canvas {
-    border: dodgerblue 1px solid;
+    /*border: dodgerblue 1px solid;*/
     width: 100%;
     height: 100%;
+}
+
+.selectedFormItem {
+    border: darkcyan 1px dashed;
 }
