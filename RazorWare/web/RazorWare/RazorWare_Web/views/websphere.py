@@ -22,7 +22,7 @@ def test_websphere_forms_designer(request):
         'designer_title': "TestDrive: WebSphere FormsDesigner",
         'tool_content': json.dumps({
             'label': {
-                'html': "<div style='border: blue 1px solid; width: 72px; height: 18px;' type='label'><label/></div>",
+                'html': "<label>Label</label>",
                 'tooltip': "Add label element to form.",
             },
         })

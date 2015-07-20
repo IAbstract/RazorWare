@@ -2,11 +2,14 @@
  * Created by David on 7/18/2015.
  */
 
-function DesignerCanvas (statusPane) {
+function DesignerCanvas (statusPane, formManager) {
     var $statusPane = new StatusPanel(statusPane);
+    var manager = formManager;
+
+    manager.setDesigner($this);
 
     var $canvas = $("<div id='canvas'/>").droppable({
-            accept: ".toolBoxItem",
+            accept: ".toolBoxItem, .formItem",
             hoverClass: "drop_hover",
             over: function (event, ui) {
                 console.log("tbItem detected: start movement tracking");
@@ -15,7 +18,25 @@ function DesignerCanvas (statusPane) {
                 console.log("tbItem left canvas: stop movement tracking");
             },
             drop: function (event, ui) {
-                $(this).append($(ui.draggable.clone()));
+                if ($(ui.draggable).hasClass("toolBoxItem")) {
+                    var $dropItem = $(ui.draggable.clone()).find(ui.draggable.attr("type"));
+                    var currentPos = ui.helper.position();
+                    currentPos.left = currentPos.left - $(this).position().left;
+                    currentPos.top = currentPos.top - $(this).position().top;
+
+                    $dropItem.css({
+                        "left": currentPos.left,
+                        "top": currentPos.top,
+                        "position": "relative"
+                    });
+                    $dropItem.prop("title", "");
+                    makeDraggable($dropItem);
+
+                    $(this).append($dropItem);
+                    updatePosition($dropItem);
+
+                    manager.addControl($dropItem);
+                }
             }
         });
 
@@ -25,6 +46,14 @@ function DesignerCanvas (statusPane) {
     function updatePosition (element) {
         //console.log("[X: " + element.position.left + ", Y: " + element.position.top + "]");
         $statusPane.write("[X: " + element.position().left + ", Y: " + element.position().top + "]");
+    }
+
+    function makeDraggable(element) {
+        //element.draggable({
+        //    revert: "invalid"
+        //});
+        element.draggable();
+        element.toggleClass("formItem");
     }
 }
 
