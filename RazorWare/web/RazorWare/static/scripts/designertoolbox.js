@@ -3,27 +3,42 @@
  */
 
 function DesignerToolbox (toolsContent) {
-    var $toolbox = buildToolbox();
+    var toolBoxItems = [];
+    var updateDisplay = null;
 
-    this.control = $toolbox;
+    this.control = buildToolbox();
+    this.setUpdate = function (updateDelegate) {
+        updateDisplay = updateDelegate;
+    };
 
     function buildToolbox() {
-        var $toolsControl = $("<table/>");
+        var $toolBox = $("<table id='toolBox'/>");
 
         console.log("loading toolbox:");
         $.each(toolsContent, function (item) {
-            console.log("\t<" + item + "/> \"" + toolsContent[item]['tooltip'] + "\" [" + toolsContent[item]['image'] + "]");
+            console.log("\t<" + item + "/> \"" + toolsContent[item]['tooltip']);
             var $row = $("<tr><td/></tr>");
-            var $tool = $("<label/>");
-            var $image = $("<img/>");
-            $image.prop("title", toolsContent[item]['tooltip']);
-            $image.prop("src", "/static/" + toolsContent[item]['image'])
+            var $tbItem = $(toolsContent[item]['html']);
+            $tbItem.prop("title", toolsContent[item]['tooltip']);
+            $tbItem.toggleClass("toolBoxItem");
+            
+            toolBoxItems.push($tbItem);
 
-            $tool.append($image);
-            $row.find("td").append($tool);
-            $toolsControl.append($row);
+            $row.find("td").append($tbItem);
+            $toolBox.append($row);
+
+            $tbItem.draggable({
+                helper: "clone",
+                opacity: 0.5,
+                drag: function (event, ui) {
+                    //console.log("dragging " + ui.helper.attr("type"));
+                    if (updateDisplay != null) {
+                        updateDisplay($(ui.helper));
+                    }
+                }
+            });
         });
 
-        return $toolsControl;
+        return $toolBox;
     }
 }
