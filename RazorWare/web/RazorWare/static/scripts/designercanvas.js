@@ -4,9 +4,7 @@
 
 function DesignerCanvas (statusPane, formManager) {
     var $statusPane = new StatusPanel(statusPane);
-    var manager = formManager;
-
-    manager.setDesigner($this);
+    var manager = new FormManager(this);
 
     var $canvas = $("<div id='canvas'/>").droppable({
             accept: ".toolBoxItem, .formItem",
@@ -42,6 +40,8 @@ function DesignerCanvas (statusPane, formManager) {
 
     this.control = $canvas;
     this.update = updatePosition;
+
+    manager.initialize();
 
     function updatePosition (element) {
         //console.log("[X: " + element.position.left + ", Y: " + element.position.top + "]");

@@ -5,12 +5,11 @@
 
 {% block scripts %}
     <script type="text/javascript">
-        var formManager = new FormManager();
         var $canvas = null;
         var $toolbox = null;
 
         $(document).ready(function () {
-            $canvas = new DesignerCanvas($("#statPane_1"), formManager);
+            $canvas = new DesignerCanvas($("#statPane_1"));
             $("#page_canvas").append($canvas.control);
 
             $toolbox = new DesignerToolbox({{ tool_content | safe }}, $canvas.control);

@@ -2,17 +2,15 @@
  * Created by David on 7/20/2015.
  */
 
-function FormManager() {
-    var $designer = null;
+function FormManager(designer) {
+    var $designer = designer;
     var controlCollection = [];
     var $currentControl = null;
 
-    this.setDesigner = function(designer) {
-        $designer = designer;
-    };
-
     this.addControl = addFormControl;
-
+    this.initialize = function () {
+        $designer.control.on("click", clearControlSelection);
+    };
 
     function addFormControl(control) {
         controlCollection.push(control);
@@ -20,7 +18,19 @@ function FormManager() {
     }
 
     function selectControl(e) {
+        if ($currentControl != null) {
+            $currentControl.toggleClass("selectedFormItem");
+        }
 
-        console.log("control selected")
+        $currentControl = $(e.currentTarget);
+        $currentControl.toggleClass("selectedFormItem");
+
+        console.log("control selected: ");
+    }
+
+    function clearControlSelection() {
+        if ($currentControl != null) {
+            $currentControl.toggleClass("selectedFormItem");
+        }
     }
 }
