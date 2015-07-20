@@ -9,11 +9,13 @@
         var $toolbox = null;
 
         $(document).ready(function () {
-            $canvas = new DesignerCanvas();
+            $canvas = new DesignerCanvas($("#statPane_1"));
             $("#page_canvas").append($canvas.control);
 
             $toolbox = new DesignerToolbox({{ tool_content | safe }});
             $("#page_toolbox").append($toolbox.control);
+
+            $toolbox.setUpdate($canvas.update);
         });
 
     </script>
@@ -21,11 +23,21 @@
 
 {% block info %}WebSphere FormsDesigner{% endblock %}
 
-
 {% block page_toolbox %}
     <div id="page_toolbox" class="toolbox"/>
 {% endblock %}
 
 {% block page_designer %}
     <div id="page_canvas" class="canvas"/>
+{% endblock %}
+
+{%  block page_status %}
+    <table class="statusBar">
+        <tr>
+            <td class="statusPane" id="statPane_1"></td>
+            <td class="statusPane" id="statPane_2"></td>
+            <td class="statusPane" id="statPane_3"></td>
+            <td class="statusPane" id="statPane_4"></td>
+        </tr>
+    </table>
 {% endblock %}

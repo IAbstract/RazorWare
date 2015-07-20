@@ -18,12 +18,13 @@ def get_websphere_info_page(request):
 def test_websphere_forms_designer(request):
     page = "razorware/formdesigner.html"
     context = {
+        'mode': "test",
         'designer_title': "TestDrive: WebSphere FormsDesigner",
         'tool_content': json.dumps({
             'label': {
-                'image': "images/toolbox/label.png",
-                'tooltip': "Add label element to form."
-            }
+                'html': "<div style='border: blue 1px solid; width: 72px; height: 18px;' type='label'><label/></div>",
+                'tooltip': "Add label element to form.",
+            },
         })
     }
 
