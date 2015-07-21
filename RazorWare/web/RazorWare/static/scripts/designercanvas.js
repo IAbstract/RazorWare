@@ -17,7 +17,8 @@ function DesignerCanvas (statusPane, formManager) {
             },
             drop: function (event, ui) {
                 if ($(ui.draggable).hasClass("toolBoxItem")) {
-                    var $dropItem = $(ui.draggable.clone()).find(ui.draggable.attr("type"));
+                    var type = ui.draggable.attr("type");
+                    var $dropItem = $(ui.draggable.clone()).find(type);
                     var currentPos = ui.helper.position();
                     currentPos.left = currentPos.left - $(this).position().left;
                     currentPos.top = currentPos.top - $(this).position().top;
@@ -33,7 +34,7 @@ function DesignerCanvas (statusPane, formManager) {
                     $(this).append($dropItem);
                     updatePosition($dropItem);
 
-                    manager.addControl($dropItem);
+                    manager.addControl($dropItem, type);
                 }
             }
         });
