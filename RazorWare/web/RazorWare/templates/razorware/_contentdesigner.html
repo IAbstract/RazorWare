@@ -20,7 +20,22 @@
     </tr>
     <tr>
         <td class="toolboxPane">
-            {% block page_toolbox %}{% endblock %}
+            <table style="padding: 0;margin: 0;width: 100%;height: 100%;">
+                <tr>
+                    <td>
+                        <div class="toolboxChildPane">
+                            {% block page_toolbox %}{% endblock %}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="toolboxChildPane">
+                            {% block property_bag %}{% endblock %}
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </td>
         <td class="canvasPane">
             {% block page_designer %}{% endblock %}

@@ -11,7 +11,7 @@ def index(request):
     if path == "":
         path = "websphere"
 
-    print("[RzWeb] path => {path}".format(path=path))
+    # print("[RzWeb] path => {path}".format(path=path))
 
     context = CUSTOMER_CONFIGS[path]['context']
     page = CUSTOMER_CONFIGS[path]['home']

@@ -55,6 +55,7 @@ function DesignerCanvas (statusPane, formManager) {
         element.draggable();
         element.toggleClass("formItem");
     }
+
 }
 
 function StatusPanel(statusPane) {
