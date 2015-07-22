@@ -15,6 +15,7 @@
             $toolbox = new DesignerToolbox({{ tool_content | safe }}, $canvas.control);
             $("#page_toolbox").append($toolbox.control);
 
+            $canvas.propertyBag.setContainer($("#property_container"))
             $toolbox.setUpdate($canvas.update);
         });
 
@@ -29,6 +30,10 @@
 
 {% block page_designer %}
     <div id="page_canvas" class="canvas"/>
+{% endblock %}
+
+{% block propbag_container %}
+    <div id="property_container"/>
 {% endblock %}
 
 {%  block page_status %}

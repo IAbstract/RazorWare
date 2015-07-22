@@ -79,3 +79,28 @@
 .selectedFormItem {
     border: darkcyan 1px dashed;
 }
+
+.propertyBag {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.propertyName {
+    font-family: Courier;
+    font-size: 10px;
+    color: #444444;
+}
+
+.propertyField {
+    border: black 1px solid;
+    font-family: Courier;
+    font-size: 10px;
+    color: #444444;
+}
+
+.propertyChange {
+    font-style: oblique;
+    color: darkgreen;
+}

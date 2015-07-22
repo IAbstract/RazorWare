@@ -43,6 +43,7 @@ function DesignerCanvas (statusPane, formManager) {
     this.update = updatePosition;
 
     manager.initialize();
+    this.propertyBag = manager.propertyBag;
 
     function updatePosition (element) {
         //console.log("[X: " + element.position.left + ", Y: " + element.position.top + "]");
