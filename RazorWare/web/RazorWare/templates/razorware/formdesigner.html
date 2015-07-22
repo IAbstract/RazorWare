@@ -15,7 +15,7 @@
             $toolbox = new DesignerToolbox({{ tool_content | safe }}, $canvas.control);
             $("#page_toolbox").append($toolbox.control);
 
-            $canvas.propertyBag.setContainer($("#property_container"))
+            $canvas.propertyGrid.setContainer($("#property_container"))
             $toolbox.setUpdate($canvas.update);
         });
 

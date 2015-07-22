@@ -7,20 +7,20 @@ function FormManager(designer) {
     var controlIndexer = {};
     var controlCollection = [];
     var $currentControl = null;
-    var $propertyBag = new PropertyBag();
+    var $propertyGrid = new PropertyGrid();
 
     this.addControl = addFormControl;
     this.initialize = function () {
         $designer.control.on("click", clearControlSelection);
     };
-    this.propertyBag = $propertyBag;
+    this.propertyGrid = $propertyGrid;
 
     function addFormControl($control, type) {
         var id = getTypeId(type);
-        $control.prop("id", id);
+        $control.base.prop("id", id);
         //  how to distinguish display values between controls?
         //  text is specific to label!!
-        $control.text(type + "." + id);
+        $control.base.text(type + "." + id);
 
         controlCollection.push($control);
         $control.on("click", selectControl);
@@ -33,7 +33,7 @@ function FormManager(designer) {
 
         $currentControl = $(event.currentTarget);
         $currentControl.toggleClass("selectedFormItem");
-        $propertyBag.displayProperties($currentControl);
+        $propertyGrid.displayProperties($currentControl);
 
         console.log("control selected: " + $currentControl.text());
         //  prevents event propagation (bubbling to parent container)
@@ -47,7 +47,7 @@ function FormManager(designer) {
         }
 
         $currentControl = null;
-        $propertyBag.clearProperties();
+        $propertyGrid.clearProperties();
     }
 
     function getTypeId(type) {
@@ -61,7 +61,7 @@ function FormManager(designer) {
     }
 }
 
-function PropertyBag() {
+function PropertyGrid() {
     var controlProperties = {};
     var $container = null;
     var $current = null;
@@ -108,6 +108,6 @@ function PropertyBag() {
     }
 
     function PropertyRow() {
-        return $("<tr><td class='propertyName'/><td><input type='text' class='propertyField'/></td></tr>");
+        return $("<tr><td><label class='propertyName'/></td><td><input type='text' class='propertyField'/></td></tr>");
     }
 }

@@ -2,8 +2,9 @@
  * Created by David on 7/18/2015.
  */
 
+var toolboxItems = {};
+
 function DesignerToolbox (toolsContent, targetCanvas) {
-    var toolBoxItems = [];
     var updateDisplay = null;
 
     this.control = buildToolbox();
@@ -17,30 +18,46 @@ function DesignerToolbox (toolsContent, targetCanvas) {
         console.log("loading toolbox:");
         $.each(toolsContent, function (item) {
             console.log("\t<" + item + "/> \"" + toolsContent[item]['tooltip']);
+
             var $row = $("<tr><td/></tr>");
-            var $tbItemContainer = $("<div class='toolBoxItem'/>");
-            var $tbItem = $(toolsContent[item]['html']);
-            $tbItem.css({
-                "width": "100%",
-                "height": "100%"
-            });
 
-            $tbItemContainer.append($tbItem);
-            $tbItemContainer.attr("type", item);
-            $tbItemContainer.prop("title", toolsContent[item]['tooltip']);
+            var $tbItem = new ToolboxItem(toolsContent[item]['html'], item);
+            $tbItem.setTarget(targetCanvas.prop("id"));
+            $tbItem.setTitle(toolsContent[item]['tooltip']);
             
-            toolBoxItems.push($tbItemContainer);
+            toolboxItems[item] = ($tbItem);
 
-            $row.find("td").append($tbItemContainer);
+            $row.find("td").append($tbItem.container);
             $toolBox.append($row);
-
-            $tbItemContainer.draggable({
-                helper: "clone",
-                opacity: 0.5,
-                containment: targetCanvas.prop("id")
-            });
         });
 
         return $toolBox;
     }
+}
+
+function ToolboxItem(tbItem, type) {
+    var $tbItemContainer = $("<div class='toolBoxItem'/>");
+    var $tbItem = $(tbItem);
+    var dropTarget = null;
+
+    this.container = $tbItemContainer;
+    this.setTitle = function(title) {
+        $tbItemContainer.prop("title", title);
+    };
+    this.setTarget = function(target) {
+        dropTarget = target;
+    };
+
+    $tbItem.css({
+        "width": "100%",
+        "height": "100%"
+    });
+    $tbItemContainer.append($tbItem);
+    $tbItemContainer.attr("type", type);
+
+    $tbItemContainer.draggable({
+        helper: "clone",
+        opacity: 0.5,
+        containment: dropTarget
+    });
 }

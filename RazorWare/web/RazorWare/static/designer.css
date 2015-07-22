@@ -36,6 +36,7 @@
 .statusPane {
     border: darkred 1px solid;
     height: 20px;
+    width: 25%;
 }
 
 .statusInfo {
@@ -80,7 +81,7 @@
     border: darkcyan 1px dashed;
 }
 
-.propertyBag {
+.propertyGrid {
     height: 100%;
     width: 100%;
     margin: 0;
@@ -94,7 +95,6 @@
 }
 
 .propertyField {
-    border: black 1px solid;
     font-family: Courier;
     font-size: 10px;
     color: #444444;
